@@ -36,7 +36,6 @@ export default function Home() {
     setCars(converterDataToCar(data.data));
     setTotalPage(data.meta.count);
     setIsLoading(false);
-    console.log(data.data);
   };
 
   useEffect(() => {

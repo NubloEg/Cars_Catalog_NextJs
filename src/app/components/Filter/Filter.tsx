@@ -15,7 +15,7 @@ export default function FIlter() {
 
   return (
     <select
-      className="fixed z-2 bg-white p-2 outline-none border-none shadow-lg shadow-blue-500/50"
+      className="fixed z-2 bg-white p-2 outline-none border-none shadow-lg text-black shadow-blue-500/50"
       value={order}
       onChange={(e) => {
         const value = e.target.value as "asc" | "desc" | "";

@@ -6,9 +6,11 @@ import FIlter from "./components/Filter/Filter";
 
 import Paginator from "./components/Paginator/Paginator";
 import { useEffect, useState } from "react";
+import { converterDataToCar } from "./utils/convertData";
+import type { Car } from "./types/car-types";
 
 export default function Home() {
-  const [cars, setCars] = useState([]);
+  const [cars, setCars] = useState<Car[]>([]);
   const [totalPage, setTotalPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const searchParams = useSearchParams();
@@ -27,13 +29,14 @@ export default function Home() {
   }): Promise<void> {
     setIsLoading(true);
     const res = await fetch(
-      `https://testing-api.ru-rating.ru/cars?_limit=12&_page=${page}&_sort=${sort}&_order=${order}`
+      `/api/cars?_limit=12&_page=${page}&_sort=${sort}&_order=${order}`
     );
 
     const data = await res.json();
-    setCars(data.data);
+    setCars(converterDataToCar(data.data));
     setTotalPage(data.meta.count);
     setIsLoading(false);
+    console.log(data.data);
   };
 
   useEffect(() => {
